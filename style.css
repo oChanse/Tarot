@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Spectral:wght@400;700&display=swap');
+
+:root {
+    --bg-main: #050207;
+    --bg-secondary: #0b0411;
+    --card-bg: #120617;
+
+    --text-main: #e6dde8;
+    --text-muted: #a89bb0;
+
+    --accent-red: #7a1020;
+    --accent-red-glow: #b3122f;
+    --accent-purple: #3a0f52;
+    --accent-gold: #b9963d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Spectral', serif;
+    background: radial-gradient(circle at top, #14061f, var(--bg-main) 75%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    padding: 35px 20px;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.6rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #e2d6e8;
+    text-shadow:
+        0 0 12px rgba(179,18,47,0.25),
+        0 2px 25px rgba(0,0,0,0.9);
+}
+
+.tarot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 34px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px;
+    width: 100%;
+}
+
+.card-container {
+    background:
+        linear-gradient(165deg, var(--card-bg), #07020b);
+    border: 1px solid var(--accent-purple);
+    border-radius: 14px;
+    padding: 16px;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    min-height: 460px;
+
+    position: relative;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card-container:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-red);
+    box-shadow:
+        0 0 25px rgba(122,16,32,0.35),
+        0 18px 30px rgba(0,0,0,0.8);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease;
+    transform: translateZ(0);
+}
+
+.card-content.fading {
+    opacity: 0;
+}
+
+.card-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 9px;
+    margin-bottom: 16px;
+    border: 1px solid #2a0c36;
+    display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.is-reversed .card-img {
+    transform: rotate(180deg);
+    filter:
+        sepia(1)
+        hue-rotate(-40deg)
+        saturate(5)
+        contrast(1.1);
+}
+
+.card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    color: #d64b5c;
+    text-align: center;
+    width: 100%;
+    margin: 12px 0;
+    line-height: 1.4;
+
+    -webkit-font-smoothing: antialiased;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.card-meaning {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+    line-height: 1.45;
+}
+
+.is-reversed .card-meaning {
+    color: #ff7b8b;
+    text-shadow: 0 0 6px rgba(179,18,47,0.35);
+}
+
+footer {
+    background-color: var(--bg-secondary);
+    text-align: center;
+    padding: 22px;
+    border-top: 1px solid #24082e;
+    font-size: 0.9rem;
+    margin-top: 50px;
+}
+
+footer a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.major-arcana { border-top: 3px solid var(--accent-gold); }
+.suit-wands { border-top: 3px solid #8a3a12; }
+.suit-swords { border-top: 3px solid #bfc0c5; }
+.suit-cups { border-top: 3px solid #4b4fd6; }
+.suit-pentacles { border-top: 3px solid #2f7a55; }
