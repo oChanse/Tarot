@@ -1,32 +1,916 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarot</title>
+    <title>Bibliotheca</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/Bibliotecha.png">
 </head>
+
 <body>
 
     <header class="tarot-header">
         <div class="title-box">
-            <h1>Tarot</h1>
-            <h3>Guia de Leitura e Significados</h3>
+            <h1>Bibliotheca</h1>
+            <h3>Lar da compreensão </h3>
         </div>
     </header>
 
-    <div class="tarot-grid" id="tarotGrid">
+    <nav class="main-nav">
+        <button class="nav-btn active" data-target="view-library">Cartas</button>
+        <button class="nav-btn" data-target="view-readings">Tiragem</button>
+        <button class="nav-btn" data-target="view-basics">Fundamentos</button>
+    </nav>
+
+    <section id="view-library" class="tab-content active">
+        <div class="tarot-grid" id="tarotGrid">
+        </div>
+    </section>
+
+    <section id="view-readings" class="tab-content">
+        <div class="reading-controls">
+            <h4>A Aba tiragem é feita pra você armazenar sua tiragem, se organizar de forma mais fácil.</h4>
+            <label for="spreadSelect">Método de Leitura:</label>
+
+            <select id="spreadSelect">
+                <option value="one">1. Carta Única</option>
+                <option value="two_light_shadow">2. Luz e Sombra (2 Cartas)</option>
+                <option value="three_time">3. Passado, Presente, Futuro</option>
+                <option value="three_dilemma">4. Situação, Obstáculo, Conselho</option>
+                <option value="two_qa">5. Pergunta e Direção</option>
+
+                <option value="cross_simple">6. Cruz Simples (4 Cartas)</option>
+                <option value="path_five">7. O Caminho (5 Cartas)</option>
+                <option value="choice_ab">8. Escolha A / Escolha B</option>
+                <option value="horseshoe">9. Ferradura (7 Cartas)</option>
+                <option value="celtic_simple">10. Cruz Celta Simplificada</option>
+
+                <option value="relationship">11. Relationship Spread (6 Cartas)</option>
+                <option value="mirror">12. Espelho Emocional</option>
+                <option value="karmic">13. Linha Kármica</option>
+                <option value="decision_map">14. Mapa da Decisão (8 Cartas)</option>
+
+                <option value="mandala_simple">15. Mandala Simples (8 Cartas)</option>
+                <option value="mandala_center">16. Mandala com Centro (9 Cartas)</option>
+                <option value="tree">17. A Árvore (10 Cartas)</option>
+                <option value="celtic_full">18. Cruz Celta Completa (10 Cartas)</option>
+                <option value="self_map">19. Mapa do Self (12 Cartas)</option>
+                <option value="chaos">20. Caos (13 Cartas)</option>
+            </select>
+
+            <div id="spreadDescription" class="spread-desc-box">
+            </div>
+
+            <button id="resetReading" class="action-btn">Limpar Mesa</button>
         </div>
 
+        <div class="spread-area" id="spreadArea">
+        </div>
+    </section>
+
+    <section id="view-basics" class="tab-content">
+        <div class="basics-container">
+            <div class="sub-nav">
+                <button class="sub-tab-btn active" onclick="openSubTab(event, 'tab-classico')">Clássico & Mitológico</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 'tab-psico')">Psicológico (Jung)</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 'tab-oculto')">Alta Magia & Cabala</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 'tab-goetia')">Ars Goetia</button>
+                <button class="sub-tab-btn" onclick="openSubTab(event, 'tab-moderno')">Intuitivo & Narrativo</button>
+            </div>
+
+            <div id="tab-classico" class="sub-content active">
+                <div class="text-content">
+                    <h2>O Livro Mudo: História e Mitologia</h2>
+                    <p class="intro-text">O Tarot não nasceu como ferramenta mágica, mas como um espelho da alma renascentista que absorveu, século após século, a sabedoria hermética, egípcia e cabalística. Estudar o clássico é estudar a história da própria consciência humana.</p>
+
+                    <hr class="separator-line">
+
+                    <h3>1. A Origem Histórica: Do Jogo ao Sagrado</h3>
+                    <p>Ao contrário da crença popular de que o Tarot veio do Egito Antigo, os registros históricos situam seu nascimento no norte da Itália, século XV (Visconti-Sforza). Originalmente chamado de <em>Trionfi</em> (Trunfos), representava um
+                        desfile alegórico de forças medievais: O Papa, O Imperador, A Morte, O Diabo.</p>
+                    <p>Foi apenas no século XVIII, com ocultistas como <strong>Court de Gébelin</strong> e <strong>Etteilla</strong>, que o Tarot foi conectado ao "Livro de Thoth" egípcio, transformando-se na ferramenta de alta magia que conhecemos. O Tarot
+                        Clássico, portanto, é um híbrido: estrutura medieval com alma esotérica.</p>
+
+                    <h3>2. A Jornada do Louco (Monolito)</h3>
+                    <p>O Tarot Clássico narra uma única e grande história: A <strong>Jornada do Herói</strong>. Os 22 Arcanos Maiores não são cartas isoladas, são capítulos da evolução do Espírito (O Louco/0) até a Iluminação (O Mundo/21).</p>
+
+                    <div class="journey-container">
+                        <div class="journey-step">
+                            <h4>Ato I: A Formação do Ego (1 ao 7)</h4>
+                            <p>O Louco encontra seus mestres mundanos. O <strong>Mago</strong> e a <strong>Sacerdotisa</strong> ensinam a dualidade. A <strong>Imperatriz</strong> e o <strong>Imperador</strong> ensinam a autoridade e a matéria. O <strong>Carro</strong>                                finaliza esta fase com a conquista do mundo material e a formação da personalidade (Máscara).</p>
+                        </div>
+                        <div class="journey-step">
+                            <h4>Ato II: O Mergulho Interior (8 ao 14)</h4>
+                            <p>O herói questiona o mundo. A <strong>Justiça</strong> traz a lei do Karma. O <strong>Eremita</strong> inicia a busca solitária. A <strong>Roda da Fortuna</strong> ensina a impermanência. A <strong>Morte</strong> não é o fim,
+                                mas a purificação necessária. A <strong>Temperança</strong> é a cura alquímica após a morte do velho eu.</p>
+                        </div>
+                        <div class="journey-step">
+                            <h4>Ato III: A Grande Obra (15 ao 21)</h4>
+                            <p>A descida aos infernos e a ascensão. O <strong>Diabo</strong> confronta as sombras e correntes materiais. A <strong>Torre</strong> destrói as ilusões finais. A <strong>Estrela</strong>, <strong>Lua</strong> e <strong>Sol</strong>                                são as fases da iluminação celestial. O <strong>Julgamento</strong> é o despertar final, culminando na dança cósmica do <strong>Mundo</strong>.</p>
+                        </div>
+                    </div>
+
+                    <h3>3. Correspondências Mitológicas Diretas</h3>
+                    <p>Para ler o clássico, você deve conhecer os Deuses que habitam as cartas. Elas são chaves para invocar estas egrégoras antigas.</p>
+
+                    <div class="myth-grid">
+                        <div class="myth-card">
+                            <span class="myth-title">O Mago (I)</span>
+                            <span class="myth-god">Hermes / Mercúrio / Thoth</span>
+                            <p>O mensageiro dos deuses, senhor da magia, da escrita e da trapaça. Aquele que domina os quatro elementos na mesa.</p>
+                        </div>
+                        <div class="myth-card">
+                            <span class="myth-title">A Sacerdotisa (II)</span>
+                            <span class="myth-god">Ísis / Perséfone / Hécate</span>
+                            <p>A deusa velada. A guardiã dos mistérios do submundo e da intuição lunar. Ela sabe o que não pode ser dito.</p>
+                        </div>
+                        <div class="myth-card">
+                            <span class="myth-title">O Imperador (IV)</span>
+                            <span class="myth-god">Zeus / Odin (Pai) / Ares</span>
+                            <p>A ordem patriarcal, a estrutura rígida, o trovão e a lei. O poder de concretizar e dominar territórios.</p>
+                        </div>
+                        <div class="myth-card">
+                            <span class="myth-title">O Enforcado (XII)</span>
+                            <span class="myth-god">Odin (Sacrifício) / Prometeu</span>
+                            <p>O Deus que se pendura na Yggdrasil por 9 noites, ferido pela própria lança, para obter a sabedoria das Runas. O sacrifício voluntário.</p>
+                        </div>
+                        <div class="myth-card">
+                            <span class="myth-title">A Torre (XVI)</span>
+                            <span class="myth-god">Torre de Babel / A Queda de Lúcifer</span>
+                            <p>A destruição da arrogância humana pelo divino. O raio de Zeus que fulmina a húbris. A libertação através do caos.</p>
+                        </div>
+                        <div class="myth-card">
+                            <span class="myth-title">O Sol (XIX)</span>
+                            <span class="myth-god">Apolo / Rá / Hélios</span>
+                            <p>A luz da razão, a verdade absoluta que queima as sombras, a profecia, a música e a clareza vital.</p>
+                        </div>
+                    </div>
+
+                    <h3>4. A Mitologia dos Elementos (Arcanos Menores)</h3>
+                    <ul class="classic-list">
+                        <li><strong>Paus (Fogo):</strong> O Mito de Prometeu roubando o fogo dos deuses. Representa a Vontade Primordial, a energia sexual criativa e a ambição. É o bastão de Aarão que floresce.</li>
+                        <li><strong>Copas (Água):</strong> O Mito do Santo Graal ou o Caldeirão de Cerridwen. O útero cósmico, a psique, as emoções profundas e a busca pela imortalidade espiritual.</li>
+                        <li><strong>Espadas (Ar):</strong> O Mito da Espada de Dâmocles ou o Nó Górdio cortado por Alexandre. O intelecto que divide para entender. A dor que traz clareza. A mente como ferramenta de guerra.</li>
+                        <li><strong>Ouros (Terra):</strong> O Mito do Rei Midas ou Gaia. A materialização do espírito. O pentáculo como escudo mágico de proteção e símbolo da moeda de troca no plano físico.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-psico" class="sub-content">
+                <div class="text-content">
+                    <h2>O Espelho da Alma: Perspectiva Junguiana</h2>
+                    <p class="intro-text">"Quem olha para fora, sonha; quem olha para dentro, desperta." – Carl Jung. No Tarot Psicológico, as cartas são ferramentas de autoconhecimento e integração da personalidade.</p>
+
+                    <div class="psy-grid">
+                        <div class="psy-concept">
+                            <h3>Sincronicidade</h3>
+                            <p>O conceito central de Jung. Não é "sorte" ou "destino". A sincronicidade é uma coincidência significativa entre um estado interno (sua dúvida) e um evento externo (a carta sorteada). O universo reflete sua psique no papel.</p>
+                        </div>
+                        <div class="psy-concept">
+                            <h3>O Inconsciente Coletivo</h3>
+                            <p>O Tarot funciona porque as cartas utilizam imagens que todos entendemos instintivamente. O "Pai" (Imperador), a "Mãe" (Imperatriz), o "Sábio" (Eremita) são partes de você que o Tarot ajuda a nomear.</p>
+                        </div>
+                    </div>
+
+                    <hr class="separator-line">
+
+                    <h3>A Dinâmica da Psique nas Cartas</h3>
+                    <p>Para a psicologia analítica, a leitura de Tarot é um processo de <strong>Projeção</strong>. Ao ver a imagem, sua mente projeta nela seus medos, desejos e bloqueios que o ego racional tenta esconder.</p>
+
+                    <div class="archetype-section">
+                        <div class="archetype-item">
+                            <div class="arch-header">
+                                <span class="arch-name">A PERSONA</span>
+                                <span class="arch-card">O Carro / O Imperador</span>
+                            </div>
+                            <p>A máscara que usamos em sociedade. Como queremos ser vistos. Se estas cartas aparecem, a questão pode estar ligada a como você está performando seu papel no mundo externo.</p>
+                        </div>
+
+                        <div class="archetype-item">
+                            <div class="arch-header">
+                                <span class="arch-name">A SOMBRA</span>
+                                <span class="arch-card">O Diabo / A Lua</span>
+                            </div>
+                            <p>Tudo o que negamos em nós mesmos (inveja, raiva, desejos reprimidos). Ver essas cartas em uma tiragem psicológica é um convite para olhar o que você está empurrando para debaixo do tapete.</p>
+                        </div>
+
+                        <div class="archetype-item">
+                            <div class="arch-header">
+                                <span class="arch-name">ANIMA & ANIMUS</span>
+                                <span class="arch-card">Os Enamorados / A Temperança</span>
+                            </div>
+                            <p>O equilíbrio entre as energias feminina (intuição/emoção) e masculina (ação/lógica) dentro de cada indivíduo. É a busca pela totalidade através da união dos opostos.</p>
+                        </div>
+
+                        <div class="archetype-item">
+                            <div class="arch-header">
+                                <span class="arch-name">O SELF (SI-MESMO)</span>
+                                <span class="arch-card">O Mundo / O Sol</span>
+                            </div>
+                            <p>O centro da totalidade da psique. O objetivo final da Individuação: tornar-se quem você realmente é, em paz com sua luz e sua sombra.</p>
+                        </div>
+                    </div>
+
+                    <h3>A Tiragem como Processo Terapêutico</h3>
+                    <p>Diferente do clássico, aqui as perguntas mudam de foco:</p>
+                    <ul class="psy-list">
+                        <li><strong>Em vez de:</strong> "Ele vai voltar para mim?"</li>
+                        <li><strong>Perguntamos:</strong> "O que esta relação espelha sobre minhas carências internas?"</li>
+                        <br>
+                        <li><strong>Em vez de:</strong> "Vou conseguir o emprego?"</li>
+                        <li><strong>Perguntamos:</strong> "Quais bloqueios internos estão impedindo minha autoconfiança profissional?"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-oculto" class="sub-content">
+                <div class="text-content">
+
+                    <div class="intro-block">
+                        <h2>Alta Magia & Qabalah Hermética</h2>
+                        <p class="intro-text">"O que está em cima é como o que está embaixo, para realizar os milagres de uma única coisa.", A Tábua de Esmeralda.</p>
+                    </div>
+
+                    <p>A <strong>Alta Magia</strong> (ou <em>Teurgia</em>) difere da feitiçaria comum por seu objetivo final: não apenas alterar a realidade material, mas elevar a consciência do praticante à divindade. É a "Grande Obra" dos alquimistas:
+                        a transmutação do chumbo (ego humano) em ouro (consciência solar).</p>
+
+                    <hr class="separator-line">
+
+                    <h3>1. As Raízes Históricas</h3>
+                    <p>O sistema que utilizamos hoje no Tarot é fruto de um sincretismo que começou no Renascimento e culminou no século XIX. Não é uma invenção única, mas uma colcha de retalhos de sabedoria antiga.</p>
+
+                    <ul class="classic-list">
+                        <li>
+                            <strong>O Hermetismo (Egito/Grécia):</strong> Base filosófica. Traz a ideia de que o universo é mental e opera por leis de correspondência e vibração.
+                        </li>
+                        <li>
+                            <strong>Eliphas Lévi (Séc. XIX):</strong> O ocultista francês que quebrou o código. Foi ele quem primeiro declarou explicitamente a conexão entre os 22 Arcanos Maiores e as 22 Letras Hebraicas, unindo Tarot e Cabala.
+                        </li>
+                        <li>
+                            <strong>A Ordem Hermética da Aurora Dourada (Golden Dawn):</strong> Mathers e Westcott sistematizaram tudo. Eles pegaram a Astrologia, o Tarot, a Cabala, a Alquimia e a Geomancia e criaram um sistema unificado, a base de quase
+                            todo o ocultismo ocidental moderno (incluindo Crowley e Waite).
+                        </li>
+                    </ul>
+
+                    <blockquote>
+                        "A Cabala é a matemática do pensamento divino. O Tarot é a sua representação pictórica."
+                    </blockquote>
+
+                    <h3>2. A Árvore da Vida (Etz Chaim)</h3>
+                    <p>A Cabala Hermética utiliza a <strong>Árvore da Vida</strong> como um mapa da consciência. Diferente da Cabala Judaica ortodoxa (focada na exegese da Torá e misticismo religioso), a vertente Hermética é um sistema prático de classificação
+                        universal.
+                    </p>
+
+                    <p>Tudo no universo, de um planeta a um humor humano, de uma cor a um anjo, pode ser classificado em uma das 10 Sephiroth (esferas) ou nos 22 Caminhos.</p>
+
+                    <h4>Os Quatro Mundos da Manifestação</h4>
+                    <p>A energia divina desce do "Não-Manifesto" (Ein Sof) até a matéria densa através de quatro estágios de densidade, representados pelo Nome Sagrado (YHVH):</p>
+
+                    <div class="kabbalah-grid">
+                        <div class="kabbalah-card fire">
+                            <span class="hebrew-char">י</span>
+                            <h4>Atziluth</h4>
+                            <small>Mundo dos Arquétipos</small>
+                            <div class="k-details">
+                                <span><strong>Natureza:</strong> Vontade Pura</span>
+                                <span><strong>Tarot:</strong> Os 4 Ases e Reis</span>
+                                <span><strong>Alma:</strong> Chiah (Força Vital)</span>
+                            </div>
+                        </div>
+
+                        <div class="kabbalah-card water">
+                            <span class="hebrew-char">ה</span>
+                            <h4>Briah</h4>
+                            <small>Mundo da Criação</small>
+                            <div class="k-details">
+                                <span><strong>Natureza:</strong> Padrões e Mente</span>
+                                <span><strong>Tarot:</strong> Rainhas</span>
+                                <span><strong>Alma:</strong> Neshamah (Intuição)</span>
+                            </div>
+                        </div>
+
+                        <div class="kabbalah-card air">
+                            <span class="hebrew-char">ו</span>
+                            <h4>Yetzirah</h4>
+                            <small>Mundo da Formação</small>
+                            <div class="k-details">
+                                <span><strong>Natureza:</strong> Astral e Emoção</span>
+                                <span><strong>Tarot:</strong> Cavaleiros e Menores</span>
+                                <span><strong>Alma:</strong> Ruach (Intelecto)</span>
+                            </div>
+                        </div>
+
+                        <div class="kabbalah-card earth">
+                            <span class="hebrew-char">ה</span>
+                            <h4>Assiah</h4>
+                            <small>Mundo da Ação</small>
+                            <div class="k-details">
+                                <span><strong>Natureza:</strong> Matéria Física</span>
+                                <span><strong>Tarot:</strong> Princesas (Valetes)</span>
+                                <span><strong>Alma:</strong> Nefesh (Instinto)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>3. As 10 Emanações (Sephiroth)</h3>
+                    <p>Cada número no Tarot (do Ás ao Dez) é um reflexo direto de uma Sephira. Entender a numerologia cabalística é entender a "alma" da carta, não apenas decorar palavras-chave.</p>
+
+                    <div class="goetia-table-container">
+                        <table class="goetia-table">
+                            <thead>
+                                <tr>
+                                    <th>Sephira</th>
+                                    <th>Tradução</th>
+                                    <th>Conceito Hermético</th>
+                                    <th>Astrologia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Kether</strong></td>
+                                    <td>Coroa</td>
+                                    <td>A semente, o ponto primordial, potencial puro antes da forma.</td>
+                                    <td>Primum Mobile</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Chokmah</strong></td>
+                                    <td>Sabedoria</td>
+                                    <td>A grande explosão, energia masculina dinâmica, força sem forma.</td>
+                                    <td>Zodíaco / Urano</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Binah</strong></td>
+                                    <td>Entendimento</td>
+                                    <td>A grande mãe, restrição, forma, o útero que recebe a energia.</td>
+                                    <td>Saturno</td>
+                                </tr>
+                                <tr style="background: rgba(0,0,0,0.2);">
+                                    <td colspan="4" style="text-align:center; font-size:0.8rem; letter-spacing:2px;">--- O ABISMO (DAATH) ---</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Chesed</strong></td>
+                                    <td>Misericórdia</td>
+                                    <td>Expansão, construção, autoridade benevolente, Júpiter.</td>
+                                    <td>Júpiter</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>5. Geburah</strong></td>
+                                    <td>Severidade</td>
+                                    <td>Destruição necessária, força, lei, correção, Marte.</td>
+                                    <td>Marte</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>6. Tiphareth</strong></td>
+                                    <td>Beleza</td>
+                                    <td>O centro, equilíbrio, o "Eu Superior", sacrifício e redenção.</td>
+                                    <td>Sol</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>7. Netzach</strong></td>
+                                    <td>Vitória</td>
+                                    <td>Sentimento, instinto, arte, natureza, atração.</td>
+                                    <td>Vênus</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>8. Hod</strong></td>
+                                    <td>Esplendor</td>
+                                    <td>Intelecto, comunicação, magia ritual, ciência.</td>
+                                    <td>Mercúrio</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>9. Yesod</strong></td>
+                                    <td>Fundação</td>
+                                    <td>O astral, sonhos, ilusão, o espelho da mente subconsciente.</td>
+                                    <td>Lua</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>10. Malkuth</strong></td>
+                                    <td>Reino</td>
+                                    <td>O mundo físico, os 4 elementos combinados, a realidade tátil.</td>
+                                    <td>Terra</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>4. O Caminho da Serpente</h3>
+                    <p>Enquanto a "Espada Flamejante" descreve a descida da criação (de 1 a 10), o <strong>Caminho da Serpente</strong> descreve a subida do Iniciado (de 10 a 1). Este é o caminho do Tarot.</p>
+                    <p>Cada Arcano Maior é um portal que conecta duas esferas, permitindo que a consciência viaje de um estado denso para um mais sutil. Meditar no Tarot (Pathworking) é, literalmente, escalar a Árvore da Vida de volta à fonte.</p>
+
+                    <div class="warning-text">
+                        <strong>Dica de Estudo:</strong> Não tente decorar tudo de uma vez. Comece estudando Malkuth (O Mundo físico) e Yesod (O Astral/Sonhos), e como o caminho do Arcano "O Mundo" e "O Julgamento" conectam essas realidades.
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="tab-goetia" class="sub-content">
+                <div class="text-content">
+                    <h2>Tarot Goético: A Arte das Sombras & O Shem HaMephorash</h2>
+
+                    <div class="goetia-intro">
+                        <p class="epigraph">"<em>Invoke often, inflame thyself with prayer.</em>", Aleister Crowley, Liber ABA</p>
+
+                        <p>Adentramos agora o território mais obscuro e poderoso do sistema hermético: o <strong>Lemegeton Clavicula Salomonis</strong>, ou simplesmente <strong>Goetia</strong>, a Arte Menor que trata da evocação dos 72 Espíritos catalogados
+                            pelo Rei Salomão. Aqui, o Tarot deixa de ser mero oráculo e se torna <em>grimório vivo</em>, cada carta um portal para forças primordiais que habitam as camadas mais profundas da psique e do cosmos.</p>
+
+                        <p>A tradição hermética, refinada por Crowley e a Golden Dawn, estabelece uma correspondência meticulosa: os <strong>36 Arcanos Menores numéricos</strong> (do 2 ao 10, nas quatro naipes) são governados pelos <strong>72 Daimons da Goetia</strong>.
+                            Cada carta rege <strong>10 graus do zodíaco</strong>, um <em>Decanato</em>, e cada Decanato é dividido entre dois espíritos: um que governa o <strong>Dia</strong> e outro que governa a <strong>Noite</strong>.</p>
+
+                        <blockquote class="crowley-quote">
+                            "Os demônios da Goetia não são entidades externas, mas complexos autônomos da psique. Invocá-los é enfrentar as próprias sombras, e dominá-las é tornar-se íntegro."
+                            <cite>— Aleister Crowley, paráfrase de suas anotações sobre Goetia (1904)</cite>
+                        </blockquote>
+
+                        <p>Crowley, em sua edição comentada do <em>Goetia</em> (1904), revolucionou a prática ao propor que esses "demônios" são manifestações de aspectos reprimidos ou desconhecidos do operador. Não são entidades a serem temidas, mas <strong>forças a serem integradas</strong>.
+                            Como ele escreveu: "<em>The spirits of the Goetia are portions of the human brain.</em>" Esta visão psicológica não diminui o poder da Arte, pelo contrário, a intensifica, pois trabalhar com a Goetia é trabalhar com as próprias
+                            profundezas.
+                        </p>
+                    </div>
+
+                    <div class="goetia-practice">
+                        <h3>A Prática Goética no Tarot</h3>
+
+                        <p>Quando uma carta goética surge em uma leitura, ela não é apenas um símbolo passivo. É um <strong>chamado</strong>. O espírito correspondente está presente na situação, influenciando eventos através de seu domínio específico. O
+                            tarólogo iniciado não apenas lê a carta, ele <em>reconhece a assinatura espiritual</em> e pode escolher trabalhar diretamente com essa força.</p>
+
+                        <div class="practice-methods">
+                            <h4>Métodos de Trabalho:</h4>
+                            <ul>
+                                <li><strong>Meditação Contemplativa:</strong> Contemplar o sigilo do espírito enquanto medita sobre a carta, permitindo que a gnose surja naturalmente.</li>
+                                <li><strong>Evocação ao Triângulo:</strong> Ritual completo usando o triângulo de manifestação, círculo de proteção, e os Nomes de Poder (YHVH, Adonai, Tetragrammaton).</li>
+                                <li><strong>Invocação pela Carta:</strong> Usar a própria carta de Tarot como portal, vibrar o nome do espírito enquanto se concentra na imagem.</li>
+                                <li><strong>Trabalho de Sombra:</strong> Dialogar com o aspecto da psique que o daimon representa, integrando suas qualidades através da escrita automática ou visualização ativa.</li>
+                            </ul>
+                        </div>
+
+                        <blockquote class="crowley-quote">
+                            "A Magia é a Ciência e Arte de causar mudanças de acordo com a Vontade."
+                            <cite>— Aleister Crowley, Magick in Theory and Practice</cite>
+                        </blockquote>
+
+                        <p>Cada Daimon possui competências específicas. <strong>Paimon</strong> (5 de Paus, Dia) confere eloquência e domínio das artes, invocar Paimon antes de uma performance ou debate pode canalizar essa força. <strong>Bune</strong> (2
+                            de Copas, Noite) governa a riqueza e a necromancia, útil para trabalhos de prosperidade ou comunicação com ancestrais. <strong>Belial</strong> (9 de Espadas, Noite) confere dignidade política e favores de autoridades, uma força
+                            poderosa mas perigosa, que exige firmeza absoluta do operador.</p>
+                    </div>
+
+                    <div class="warning-section">
+                        <h3>⚠️ AVISO SOLENE ⚠️</h3>
+                        <p class="warning-text"><strong>O uso destas correspondências é para evocação, trabalho de sombra e magia cerimonial séria.</strong></p>
+                        <p class="warning-detail">Não invoque o que não pode banir. Não chame o que não pode enfrentar. Os espíritos da Goetia respondem à autoridade, mas punem a arrogância. "<em>Quem brinca com fogo, eventualmente se queima, mas quem domina o fogo, torna-se o próprio fogo.</em>"</p>
+                        <p class="warning-detail">Antes de qualquer trabalho goético:</p>
+                        <ul>
+                            <li>Estude profundamente o espírito: suas características, poderes, limitações e histórico.</li>
+                            <li>Purifique-se através de jejum, banho ritual e meditação.</li>
+                            <li>Conheça os <strong>rituais de banimento</strong> (Pentagrama Menor, Hexagrama Menor) e pratique-os até a perfeição.</li>
+                            <li>Tenha clareza absoluta sobre sua intenção, os espíritos são literais e implacáveis.</li>
+                            <li>Registre tudo em seu diário mágico. A gnose se perde se não for documentada.</li>
+                        </ul>
+                    </div>
+
+                    <div class="shem-hamephorash">
+                        <h3>✡️ O Shem HaMephorash: 72 Nomes de Deus, 72 Espíritos</h3>
+
+                        <p>A Goetia está intimamente ligada ao <strong>Shem HaMephorash</strong>, os 72 Nomes de Deus derivados de Êxodo 14:19-21. Cada Nome governa 5 graus do zodíaco, e dentro desses graus operam os Daimons correspondentes. Esta é a estrutura
+                            que unifica Qabbalah, Astrologia e Goetia em um sistema coerente.</p>
+
+                        <p>Crowley explorou essa conexão em seus trabalhos sobre a <em>Gematria</em> e o <em>Liber 777</em>, demonstrando como cada espírito goético possui uma correspondência numérica, planetária, elemental e angelical. Os 72 Daimons não
+                            são caos, são ordem transmutada, luz que passou pelo prisma da manifestação e se dividiu em espectro completo.</p>
+
+                        <blockquote class="crowley-quote">
+                            "Cada demônio é um anjo caído, mas queda é apenas mudança de perspectiva. O que está embaixo reflete o que está acima."
+                            <cite>— Interpretação hermética do axioma ‘Como acima, assim abaixo’</cite>
+                        </blockquote>
+                    </div>
+
+                    <div class="decanates-explanation">
+                        <h3>🌑 Os Decanatos: Divisões do Poder</h3>
+
+                        <p>Cada signo zodiacal possui 30 graus, divididos em três <strong>Decanatos</strong> de 10 graus cada. Estes Decanatos foram conhecidos pelos egípcios, refinados pelos caldeus, e sistematizados pelos hermetistas medievais. No sistema
+                            goético:
+                        </p>
+
+                        <ul>
+                            <li><strong>Primeiro Decanato (0°-10°):</strong> Governado pela natureza primária do signo, força bruta e iniciação.</li>
+                            <li><strong>Segundo Decanato (10°-20°):</strong> Refinamento e desenvolvimento das qualidades do signo.</li>
+                            <li><strong>Terceiro Decanato (20°-30°):</strong> Culminação, maestria e transição para o próximo signo.</li>
+                        </ul>
+
+                        <p>Dentro de cada Decanato, dois espíritos governam: um para as horas diurnas (influência solar, ativa, expansiva) e outro para as horas noturnas (influência lunar, receptiva, introspectiva). Conhecer qual espírito rege o momento
+                            presente é essencial para o trabalho preciso.</p>
+                    </div>
+
+                    <h3 class="table-title">📜 A Tábua Completa dos 72 Espíritos</h3>
+                    <p class="table-subtitle">Correspondências Goéticas por Arcano Menor & Decanato</p>
+
+                    <div class="goetia-table-container">
+                        <table class="goetia-table">
+                            <thead>
+                                <tr>
+                                    <th>Carta</th>
+                                    <th>Signo</th>
+                                    <th>Daimon (Dia)</th>
+                                    <th>Poder Resumido</th>
+                                    <th>Daimon (Noite)</th>
+                                    <th>Poder Resumido</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2 de Paus</td>
+                                    <td>Áries (0°-10°)</td>
+                                    <td><strong>1. Bael</strong></td>
+                                    <td>Invisibilidade, sigilo mágico.</td>
+                                    <td><strong>2. Agares</strong></td>
+                                    <td>Parar ações, conter línguas.</td>
+                                </tr>
+                                <tr>
+                                    <td>3 de Paus</td>
+                                    <td>Áries (10°-20°)</td>
+                                    <td><strong>3. Vassago</strong></td>
+                                    <td>Revelar passado/futuro oculto.</td>
+                                    <td><strong>4. Samigina</strong></td>
+                                    <td>Ciências liberais, necromancia.</td>
+                                </tr>
+                                <tr>
+                                    <td>4 de Paus</td>
+                                    <td>Áries (20°-30°)</td>
+                                    <td><strong>5. Marbas</strong></td>
+                                    <td>Cura de doenças, mecânica.</td>
+                                    <td><strong>6. Valefor</strong></td>
+                                    <td>Roubo, familiares, tentação.</td>
+                                </tr>
+                                <tr>
+                                    <td>5 de Paus</td>
+                                    <td>Leão (0°-10°)</td>
+                                    <td><strong>9. Paimon</strong></td>
+                                    <td>Artes, ciências, carisma devastador.</td>
+                                    <td><strong>10. Buer</strong></td>
+                                    <td>Cura completa, filosofia natural.</td>
+                                </tr>
+                                <tr>
+                                    <td>6 de Paus</td>
+                                    <td>Leão (10°-20°)</td>
+                                    <td><strong>11. Gusion</strong></td>
+                                    <td>Dignidade, honra, revelação.</td>
+                                    <td><strong>12. Sitri</strong></td>
+                                    <td>Luxúria, paixão ardente, nudez.</td>
+                                </tr>
+                                <tr>
+                                    <td>7 de Paus</td>
+                                    <td>Leão (20°-30°)</td>
+                                    <td><strong>13. Beleth</strong></td>
+                                    <td>Amor forçado, obsessão intensa.</td>
+                                    <td><strong>14. Leraje</strong></td>
+                                    <td>Batalhas, arqueirismo, feridas purulentas.</td>
+                                </tr>
+                                <tr>
+                                    <td>8 de Paus</td>
+                                    <td>Sagitário (0°-10°)</td>
+                                    <td><strong>17. Botis</strong></td>
+                                    <td>Reconciliação, verdades ocultas.</td>
+                                    <td><strong>18. Bathin</strong></td>
+                                    <td>Viagem astral, conhecimento de pedras.</td>
+                                </tr>
+                                <tr>
+                                    <td>9 de Paus</td>
+                                    <td>Sagitário (10°-20°)</td>
+                                    <td><strong>19. Sallos</strong></td>
+                                    <td>Amor pacífico e duradouro.</td>
+                                    <td><strong>20. Purson</strong></td>
+                                    <td>Tesouros ocultos, cosmologia.</td>
+                                </tr>
+                                <tr>
+                                    <td>10 de Paus</td>
+                                    <td>Sagitário (20°-30°)</td>
+                                    <td><strong>21. Marax</strong></td>
+                                    <td>Astronomia, virtudes das ervas.</td>
+                                    <td><strong>22. Ipos</strong></td>
+                                    <td>Coragem, presença, sagacidade.</td>
+                                </tr>
+                                <tr>
+                                    <td>2 de Copas</td>
+                                    <td>Câncer (0°-10°)</td>
+                                    <td><strong>25. Glasya-Labolas</strong></td>
+                                    <td>Ensino, derramamento de sangue.</td>
+                                    <td><strong>26. Bune</strong></td>
+                                    <td>Riqueza material, necromancia.</td>
+                                </tr>
+                                <tr>
+                                    <td>3 de Copas</td>
+                                    <td>Câncer (10°-20°)</td>
+                                    <td><strong>27. Ronové</strong></td>
+                                    <td>Retórica suprema, línguas estrangeiras.</td>
+                                    <td><strong>28. Berith</strong></td>
+                                    <td>Dignidade, alquimia, transmutação.</td>
+                                </tr>
+                                <tr>
+                                    <td>4 de Copas</td>
+                                    <td>Câncer (20°-30°)</td>
+                                    <td><strong>29. Astaroth</strong></td>
+                                    <td>Segredos profundos, ciências liberais.</td>
+                                    <td><strong>30. Forneus</strong></td>
+                                    <td>Retórica, ser amado por inimigos.</td>
+                                </tr>
+                                <tr>
+                                    <td>5 de Copas</td>
+                                    <td>Escorpião (0°-10°)</td>
+                                    <td><strong>33. Gaap</strong></td>
+                                    <td>Filosofia, transportar através de nações, manipular ódio/amor.</td>
+                                    <td><strong>34. Furfur</strong></td>
+                                    <td>Tempestades, amor tempestuoso, mentiras.</td>
+                                </tr>
+                                <tr>
+                                    <td>6 de Copas</td>
+                                    <td>Escorpião (10°-20°)</td>
+                                    <td><strong>35. Marchosias</strong></td>
+                                    <td>Luta destemida, força bruta.</td>
+                                    <td><strong>36. Stolas</strong></td>
+                                    <td>Astronomia, ervas venenosas.</td>
+                                </tr>
+                                <tr>
+                                    <td>7 de Copas</td>
+                                    <td>Escorpião (20°-30°)</td>
+                                    <td><strong>37. Phenex</strong></td>
+                                    <td>Ciências maravilhosas, poesia sublime.</td>
+                                    <td><strong>38. Halphas</strong></td>
+                                    <td>Guerra, construção de arsenais.</td>
+                                </tr>
+                                <tr>
+                                    <td>8 de Copas</td>
+                                    <td>Peixes (0°-10°)</td>
+                                    <td><strong>41. Focalor</strong></td>
+                                    <td>Poder sobre ventos e mares, afogar.</td>
+                                    <td><strong>42. Vepar</strong></td>
+                                    <td>Governar águas, feridas sépticas.</td>
+                                </tr>
+                                <tr>
+                                    <td>9 de Copas</td>
+                                    <td>Peixes (10°-20°)</td>
+                                    <td><strong>43. Sabnock</strong></td>
+                                    <td>Construir fortificações, proteção.</td>
+                                    <td><strong>44. Shax</strong></td>
+                                    <td>Roubo, destruir sentidos, descobrir oculto.</td>
+                                </tr>
+                                <tr>
+                                    <td>10 de Copas</td>
+                                    <td>Peixes (20°-30°)</td>
+                                    <td><strong>45. Viné</strong></td>
+                                    <td>Descobrir bruxas, destruir muralhas.</td>
+                                    <td><strong>46. Bifrons</strong></td>
+                                    <td>Necromancia profunda, geometria.</td>
+                                </tr>
+
+                                <tr>
+                                    <td>2 de Espadas</td>
+                                    <td>Libra (0°-10°)</td>
+                                    <td><strong>49. Crocell</strong></td>
+                                    <td>Aquecer águas, geometria.</td>
+                                    <td><strong>50. Furcas</strong></td>
+                                    <td>Filosofia, lógica, piromancia.</td>
+                                </tr>
+                                <tr>
+                                    <td>3 de Espadas</td>
+                                    <td>Libra (10°-20°)</td>
+                                    <td><strong>51. Balam</strong></td>
+                                    <td>Invisibilidade, astúcia, profecia.</td>
+                                    <td><strong>52. Alloces</strong></td>
+                                    <td>Astronomia, familiares leais.</td>
+                                </tr>
+                                <tr>
+                                    <td>4 de Espadas</td>
+                                    <td>Libra (20°-30°)</td>
+                                    <td><strong>53. Camio</strong></td>
+                                    <td>Língua dos animais, águas correntes.</td>
+                                    <td><strong>54. Murmur</strong></td>
+                                    <td>Filosofia, necromancia completa.</td>
+                                </tr>
+                                <tr>
+                                    <td>5 de Espadas</td>
+                                    <td>Aquário (0°-10°)</td>
+                                    <td><strong>57. Ose</strong></td>
+                                    <td>Metamorfose, insanidade controlada.</td>
+                                    <td><strong>58. Amy</strong></td>
+                                    <td>Astrologia profunda, familiares.</td>
+                                </tr>
+                                <tr>
+                                    <td>6 de Espadas</td>
+                                    <td>Aquário (10°-20°)</td>
+                                    <td><strong>59. Orias</strong></td>
+                                    <td>Conhecimento estelar, dignidade.</td>
+                                    <td><strong>60. Vapula</strong></td>
+                                    <td>Trabalhos manuais, tecnologia.</td>
+                                </tr>
+                                <tr>
+                                    <td>7 de Espadas</td>
+                                    <td>Aquário (20°-30°)</td>
+                                    <td><strong>61. Zagan</strong></td>
+                                    <td>Transmutação alquímica, sabedoria.</td>
+                                    <td><strong>62. Volac</strong></td>
+                                    <td>Tesouros guardados, serpentes.</td>
+                                </tr>
+                                <tr>
+                                    <td>8 de Espadas</td>
+                                    <td>Gêmeos (0°-10°)</td>
+                                    <td><strong>65. Andrealphus</strong></td>
+                                    <td>Mensuração exata, astronomia.</td>
+                                    <td><strong>66. Cimejes</strong></td>
+                                    <td>Gramática, lógica, tesouros enterrados.</td>
+                                </tr>
+                                <tr>
+                                    <td>9 de Espadas</td>
+                                    <td>Gêmeos (10°-20°)</td>
+                                    <td><strong>67. Amdusias</strong></td>
+                                    <td>Música dos céus, destruição vegetal.</td>
+                                    <td><strong>68. Belial</strong></td>
+                                    <td>Dignidade política, favores de poder.</td>
+                                </tr>
+                                <tr>
+                                    <td>10 de Espadas</td>
+                                    <td>Gêmeos (20°-30°)</td>
+                                    <td><strong>69. Decarabia</strong></td>
+                                    <td>Virtudes de ervas, pássaros, pedras.</td>
+                                    <td><strong>70. Seere</strong></td>
+                                    <td>Velocidade extrema, transporte instantâneo.</td>
+                                </tr>
+
+                                <tr>
+                                    <td>2 de Ouros</td>
+                                    <td>Capricórnio (0°-10°)</td>
+                                    <td><strong>63. Andras</strong></td>
+                                    <td>Semear discórdia, assassinato.</td>
+                                    <td><strong>64. Haures</strong></td>
+                                    <td>Destruir inimigos, fogo infernal.</td>
+                                </tr>
+                                <tr>
+                                    <td>3 de Ouros</td>
+                                    <td>Capricórnio (10°-20°)</td>
+                                    <td><strong>71. Dantalion</strong></td>
+                                    <td>Ler/controlar mentes, influenciar amor.</td>
+                                    <td><strong>72. Andromalius</strong></td>
+                                    <td>Capturar ladrões, punir malfeitores.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="closing-meditation">
+                        <h3>🜄 Meditação Final: A Natureza Dual dos Espíritos</h3>
+
+                        <p>Os 72 Espíritos da Goetia não são "bons" ou "maus", são <strong>forças</strong>. Como a eletricidade pode tanto iluminar uma casa quanto matar um homem, os Daimons podem tanto elevar quanto destruir. Tudo depende da habilidade,
+                            intenção e integridade do operador.</p>
+
+                        <blockquote class="crowley-quote">
+                            "There is no part of me that is not of the gods."
+                            <cite>- Aleister Crowley, Liber AL vel Legis (I:22)</cite>
+                        </blockquote>
+
+                        <p>Quando você puxa uma carta goética em uma leitura, pergunte-se:</p>
+                        <ul>
+                            <li>Que aspecto da minha psique este espírito representa?</li>
+                            <li>Que poder ele me oferece, e qual é o preço?</li>
+                            <li>Estou pronto para enfrentar esta sombra e integrá-la?</li>
+                            <li>Como posso usar essa força de forma construtiva, não destrutiva?</li>
+                        </ul>
+
+                        <p class="final-invocation">A Goetia é o caminho da <strong>autoteúrgia</strong>, tornar-se deus através do domínio total de si mesmo. Não há atalhos, não há substituições. Apenas a Vontade, o Conhecimento e a Coragem para descer ao próprio inferno interno
+                            e retornar transformado.</p>
+
+                        <p class="closing-seal">🜏 <em>Aude Sapere</em>, Ouse Saber. 🜏</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="tab-moderno" class="sub-content">
+                <div class="text-content">
+                    <h2>🌙 Tarot Intuitivo & Narrativo: A Arte de Ler Além do Véu</h2>
+
+                    <div class="intro-section">
+                        <p class="opening-quote">
+                            "<em>Tarot is a tool for accessing our own wisdom.</em>" — Rachel Pollack
+                        </p>
+
+                        <p>Há uma revolução silenciosa acontecendo no mundo do Tarot. Longe dos dogmas rígidos e das correspondências fixas, uma nova geração de tarólogos está redescobrindo algo que os primeiros cartomantes sempre souberam: <strong>o Tarot não é um dicionário, é um espelho vivo</strong>.
+                            As cartas não têm significados absolutos — elas têm <em>possibilidades infinitas</em>, e cabe ao leitor escolher qual história elas estão contando naquele momento, para aquela pessoa, naquela situação única.</p>
+
+                        <p>Esta é a essência do <strong>Tarot Intuitivo e Narrativo</strong>: ler não apenas com a mente, mas com a percepção inteira. Sentir as cartas antes de enquadrá-las. Permitir que imagens, emoções e narrativas emerjam juntas.</p>
+                    </div>
+
+                    <div class="narrative-section">
+                        <h3>📖 Tarot Narrativo: Contando Histórias com Imagens</h3>
+
+                        <blockquote class="philosophy-quote">
+                            "Tarot reading is not about memorizing meanings, but about seeing what is in front of you."
+                            <cite>— Camelia Elias, autora de "Marseille Tarot: Towards the Art of Reading"</cite>
+                        </blockquote>
+
+                        <p><strong>Esqueça as palavras-chave decoradas.</strong> No método narrativo, você não recita definições — você <em>observa</em>. As cartas funcionam como cenas abertas, cheias de tensão, movimento e silêncio. E o leitor assume o
+                            papel de narrador atento.</p>
+
+                        <div class="method-explanation">
+                            <h4>Como Funciona a Leitura Narrativa:</h4>
+
+                            <p><strong>1. Observe a cena:</strong> O que está acontecendo literalmente na imagem? Quem age? Quem observa? O que está em movimento?</p>
+
+                            <p><strong>2. Conecte as cartas como sequência:</strong> Uma carta reage à outra. Elas se olham, se evitam, se contradizem. O sentido nasce da relação, não do isolamento.</p>
+
+                            <p><strong>3. Dê espaço ao conflito:</strong> Histórias só existem onde há tensão. Cartas desconfortáveis não são erros — são o motor da leitura.</p>
+
+                            <p><strong>4. Convide o consulente para a narrativa:</strong> A pergunta deixa de ser “o que isso significa?” e passa a ser “onde você está nessa história?”.</p>
+                        </div>
+
+                        <blockquote class="master-quote">
+                            "Tarot is dangerous when you really look at the images, because they start looking back."
+                            <cite>— Enrique Enriquez, autor de "Tarology"</cite>
+                        </blockquote>
+                    </div>
+
+                    <div class="intuitive-section">
+                        <h3>🔮 Tarot Intuitivo: A Carta Como Gatilho de Percepção</h3>
+
+                        <blockquote class="philosophy-quote">
+                            "The body is often the first place intuition speaks."
+                            <cite>— Lindsay Mack, criadora do Tarot for the Wild Soul</cite>
+                        </blockquote>
+
+                        <p>No Tarot Intuitivo, a carta não entrega respostas prontas. Ela provoca reações. Sensações físicas, memórias involuntárias, imagens internas. O significado nasce desse impacto direto — antes de qualquer racionalização.</p>
+
+                        <div class="intuitive-philosophy">
+                            <h4>Princípios do Tarot Intuitivo:</h4>
+
+                            <p><strong>Sensação antes de conceito:</strong> Se uma carta tradicionalmente “positiva” causa desconforto, essa reação é a mensagem.</p>
+
+                            <p><strong>A imagem vem antes do nome:</strong> Olhar a carta sem ler o título pode revelar camadas que o significado clássico esconde.</p>
+
+                            <p><strong>Não existe leitura neutra:</strong> Toda leitura é situada. Ela acontece em um corpo, em um momento, em um contexto específico.</p>
+                        </div>
+
+                        <blockquote class="master-quote">
+                            "Intuition is not irrational. It is simply a different form of intelligence."
+                            <cite>— Benebell Wen, autora de "Holistic Tarot"</cite>
+                        </blockquote>
+                    </div>
+
+                    <div class="ethical-section">
+                        <h3>⚖️ Tarot Ético: Responsabilidade na Arte de Ler</h3>
+
+                        <blockquote class="philosophy-quote">
+                            "Tarot readers have a responsibility to empower, not to control."
+                            <cite>— Ethony Dawn</cite>
+                        </blockquote>
+
+                        <p>Tarot Ético não é censura simbólica — é consciência do impacto psicológico da leitura. Palavras moldam decisões. Leituras moldam narrativas internas. E narrativas internas moldam vidas.</p>
+
+                        <div class="ethical-principles">
+                            <h4>Fundamentos da Ética no Tarot:</h4>
+
+                            <p><strong>O consulente é o agente principal:</strong> O Tarot não substitui escolhas, apenas ilumina possibilidades.</p>
+
+                            <p><strong>Limites claros:</strong> Tarot não diagnostica, não sentencia e não remove o livre-arbítrio.</p>
+
+                            <p><strong>Responsabilidade emocional:</strong> A leitura deve ampliar consciência, não medo ou dependência.</p>
+                        </div>
+                    </div>
+
+                    <div class="conclusion-section">
+                        <h3>🌟 Integrando as Abordagens</h3>
+
+                        <p>O Tarot Narrativo, Intuitivo e Ético não são métodos opostos, mas camadas da mesma prática viva. Ver, sentir e agir com responsabilidade formam um único gesto.</p>
+
+                        <blockquote class="final-quote">
+                            "The Tarot does not tell you what will happen. It shows you what is happening."
+                            <cite>— Tradição oral do Tarot contemporâneo</cite>
+                        </blockquote>
+
+                        <p class="closing-words">
+                            Ler Tarot é um ato de escuta profunda. Das imagens, do corpo e do outro. Quanto mais honesta a escuta, mais transformadora a leitura.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+
+    <div id="cardSelectorModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Escolha a Lâmina</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-grid" id="modalGrid">
+            </div>
+        </div>
+    </div>
+
     <footer>
-        Desenvolvido por <a href="https://www.instagram.com/ojottaa/" target="_blank">@ojottaa</a> com o íntuito de ensinar e aprender ao mesmo tempo.<br>
-        Os significados seguem um afunilamento interpretativo, oferecendo uma leitura teórica orientadora, pensada para quem está aprendendo e deseja expandir a compreensão com o tempo.
+        Desenvolvido por <a href="https://www.instagram.com/ojottaa/" target="_blank">@ojottaa</a>
+        <br> Ferramenta para iniciantes e iniciados na Arte Real.
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
-
-
-
-
