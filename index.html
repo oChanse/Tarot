@@ -1,58 +1,89 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bibliotheca</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="images/Bibliotecha.png">
-    <script>
-        async function loaddivisions() {
-            const elements = document.querySelectorAll('[data-include]');
-            const promises = [];
-            for (const el of elements) {
-                const file = el.getAttribute('data-include');
-                const promise = fetch(file)
-                    .then(res => {
-                        if (!res.ok) throw new Error(`Erro ${res.status}`);
-                        return res.text();
-                    })
-                    .then(html => {
-                        el.innerHTML = html;
-                        const scripts = el.querySelectorAll('script');
-                        scripts.forEach(script => {
-                            const newScript = document.createElement('script');
-                            newScript.textContent = script.textContent;
-                            document.head.appendChild(newScript).remove();
-                        });
-                        return el;
-                    })
-                    .catch(err => {
-                        console.error("Erro ao carregar partial:", file, err);
-                        el.innerHTML = "<p>Erro ao carregar conteúdo.</p>";
-                        return el;
-                    });
-                promises.push(promise);
-            }
-            return Promise.all(promises);
-        }
-        document.addEventListener('DOMContentLoaded', async () => {
-            console.log("Iniciando carregamento de divisions...");
-            await loaddivisions();
-            console.log("divisions carregados. Iniciando script principal...");
-            const mainScript = document.createElement('script');
-            mainScript.src = 'scripts/script.js';
-            document.body.appendChild(mainScript);
-        });
-    </script>
+    <title>Bibliotheca - Lar Da Compreensão</title>
+    <link rel="stylesheet" href="visuals/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
 </head>
 <body>
-    <div data-include="divisions/header.html"></div>
-    <div data-include="divisions/nav.html"></div>
-    <div data-include="divisions/library.html"></div>
-    <div data-include="divisions/readings.html"></div>
-    <div data-include="divisions/basics.html"></div>
-    <div data-include="divisions/modal.html"></div>
-    <div data-include="divisions/footer.html"></div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-container">
+                <h1 class="site-logo">Bibliotheca</h1>
+                <div class="logo-subtitle">Lar Da Compreensão</div>
+            </div>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> <span>Início</span></a></li>
+                    <li><a href="#" class="nav-link" data-page="estudos"><i class="fas fa-book-open"></i> <span>Estudos</span></a></li>
+                    <li><a href="#" class="nav-link" data-page="cartas"><i class="fas fa-clover"></i> <span>Cartas</span></a></li>
+                    <li><a href="#" class="nav-link" data-page="mesa"><i class="fas fa-table"></i> <span>Mesa</span></a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="#" class="mobile-nav-link active" data-page="home"><i class="fas fa-home"></i> <span>Início</span></a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="estudos"><i class="fas fa-book-open"></i> <span>Estudos</span></a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="cartas"><i class="fas fa-clover"></i> <span>Cartas</span></a></li>
+            <li><a href="#" class="mobile-nav-link" data-page="mesa"><i class="fas fa-table"></i> <span>Mesa</span></a></li>
+        </ul>
+    </nav>
+
+    <main class="content-area" id="contentArea">
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <p>Carregando estudos...</p>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="counter-section">
+                <div class="counter-container">
+                    <span class="counter-label">Cada visita contribui para o ensinamento</span>
+                    <div class="counter-display">
+                        <i class="fas fa-eye counter-icon"></i>
+                        <span id="contador" class="counter-number">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-info">
+                <div class="creator-info">
+                    <a href="https://www.instagram.com/ojottaa/" target="_blank" class="instagram-link">
+                        <i class="fab fa-instagram"></i>
+                        <span>@ojottaa</span>
+                    </a>
+                </div>
+                
+                <div class="copyright">
+                    © <span id="currentYear"></span> Bibliotheca. Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
 </body>
 </html>

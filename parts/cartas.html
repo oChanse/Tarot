@@ -1,0 +1,123 @@
+
+<div class="page-cartas">
+    
+    <div class="cartas-header">
+        <h2>Biblioteca de Cartas</h2>
+        <p class="subtitle">Clique em qualquer carta para ver seu significado invertido</p>
+        
+        <div class="cartas-stats">
+            <div class="stat">
+                <span class="stat-number" id="totalCards">0</span>
+                <span class="stat-label">Cartas Carregadas</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="filteredCards">0</span>
+                <span class="stat-label">Mostrando</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">78</span>
+                <span class="stat-label">Cartas do Tarot</span>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="cartas-controls">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="cardSearch" placeholder="Buscar carta por nome, significado ou grupo...">
+            <button id="clearSearch" class="search-clear" title="Limpar busca">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="filter-container">
+            <div class="filter-group">
+                <span class="filter-label">Filtrar por grupo:</span>
+                <div class="filter-buttons" id="filterButtons">
+                    
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="library-container">
+        <div id="tarotGrid" class="tarot-grid">
+            
+            <div class="loading-cards">
+                <div class="spinner"></div>
+                <p>Carregando cartas...</p>
+            </div>
+        </div>
+        
+        <div id="searchResults" class="search-results"></div>
+    </div>
+
+    
+    <div class="card-details-modal" id="cardDetailsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-body">
+                <div class="modal-card-image">
+                    <div class="card-image-container">
+                        <img id="modalCardImg" src="" alt="Carta" class="card-detail-img">
+                        <div class="card-orientation-badge" id="orientationBadge">
+                            <i class="fas fa-sun"></i>
+                            <span>Direita</span>
+                        </div>
+                    </div>
+                    <button class="toggle-orientation-btn" id="toggleOrientationBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Inverter Carta</span>
+                    </button>
+                </div>
+                
+                <div class="modal-card-info">
+                    <h3 id="modalCardName">Nome da Carta</h3>
+                    <div class="card-group-badge" id="modalCardGroup">Grupo</div>
+                    
+                    <div class="meaning-section">
+                        <div class="meaning-tabs">
+                            <button class="meaning-tab active" data-meaning="upright">
+                                <i class="fas fa-sun"></i>
+                                <span>Significado Direito</span>
+                            </button>
+                            <button class="meaning-tab" data-meaning="reversed">
+                                <i class="fas fa-moon"></i>
+                                <span>Significado Invertido</span>
+                            </button>
+                        </div>
+                        
+                        <div class="meaning-content">
+                            <div class="meaning-text active" id="uprightMeaning">
+                                <p>Carregando...</p>
+                            </div>
+                            <div class="meaning-text" id="reversedMeaning">
+                                <p>Carregando...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-navigation">
+                        <button class="nav-btn prev-card" id="prevCard">
+                            <i class="fas fa-chevron-left"></i>
+                            <span>Anterior</span>
+                        </button>
+                        <div class="card-position">
+                            <span id="currentCardIndex">1</span> de <span id="totalCardsModal">78</span>
+                        </div>
+                        <button class="nav-btn next-card" id="nextCard">
+                            <span>Próxima</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
